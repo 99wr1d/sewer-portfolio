@@ -107,18 +107,19 @@ const filteredProducts = computed(() => {
         </article>
       </div>
 
-      <!-- CTA -->
-      <div class="text-center mt-12">
-        <p class="text-secondary-600 mb-4">
-          Хотите что-то особенное? Мы создадим уникальный подарок специально для вашего близкого человека
+      <!-- CTA — призыв обсудить особенный подарок -->
+      <div class="text-center mt-14 p-8 bg-white/60 rounded-2xl border border-primary-100">
+        <p class="text-lg md:text-xl text-secondary-700 font-medium mb-2">
+          Хотите что-то особенное?
+        </p>
+        <p class="text-secondary-600 mb-6 max-w-lg mx-auto">
+          Мы создадим уникальный подарок специально для вашего близкого человека — обсудим идею вместе
         </p>
         <a
-          :href="`https://wa.me/${contacts.whatsapp?.replace(/[^0-9]/g, '')}`"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-outline"
+          href="#contacts"
+          class="btn-primary"
         >
-          Обсудить подарок
+          Обсудить идею подарка
         </a>
       </div>
     </div>

@@ -47,6 +47,7 @@ export interface NavItem {
 export interface ContactInfo {
   whatsapp?: string   // Номер WhatsApp (формат: +77001234567)
   telegram?: string   // Username в Telegram (формат: @username)
+  instagram?: string  // Username в Instagram (формат: @username или просто username)
   phone?: string      // Номер телефона для звонков
   email?: string      // Email адрес
   address?: string    // Полный адрес
