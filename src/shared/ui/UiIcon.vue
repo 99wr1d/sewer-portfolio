@@ -63,6 +63,7 @@ const icons: Record<string, string> = {
   drying: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
   ironing: 'M5 12H3v9h18v-9H5zm0-2h16a2 2 0 012 2v9a2 2 0 01-2 2H3a2 2 0 01-2-2v-9a2 2 0 012-2h2zm4-8h6v4H9V2z',
   storage: 'M3 3h18v18H3V3zm2 2v14h14V5H5zm4 3h6v2H9V8zm0 4h6v2H9v-2z',
+  detergent: 'M8 2h8v4H8V2zM6 6h12v2H6V6zm1 2h10l1 14H6L7 8zm4 3v8m3-8v8', // Бутылка моющего средства
 
   // Общие иконки
   check: 'M20 6L9 17l-5-5',

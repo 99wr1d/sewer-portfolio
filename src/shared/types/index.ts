@@ -67,7 +67,7 @@ export interface DeliveryZone {
 }
 
 /**
- * CareTip — совет по уходу за изделием
+ * CareTip — совет по уходу за изделием (старый формат, оставлен для совместимости)
  *
  * Используется в: src/shared/config/site.ts (массив careTips)
  * Отображается в: CareTipsSection
@@ -76,6 +76,45 @@ export interface CareTip {
   title: string       // Заголовок (например: "Стирка")
   description: string // Подробное описание
   icon: string        // Название иконки из UiIcon (например: "washing")
+}
+
+/**
+ * CareTipItem — один пункт в категории ухода
+ *
+ * Пример: "Стирка при температуре до 40 °C"
+ * forbidden=true означает что это "нельзя делать" (будет показано с ❌)
+ */
+export interface CareTipItem {
+  text: string        // Текст рекомендации
+  forbidden?: boolean // Если true — это запрет (что делать нельзя)
+}
+
+/**
+ * CareTipCategory — категория советов (Стирка, Сушка, Глажка и т.д.)
+ */
+export interface CareTipCategory {
+  title: string         // Название категории (например: "Стирка")
+  icon: string          // Иконка категории
+  items: CareTipItem[]  // Список рекомендаций
+}
+
+/**
+ * ProductCareGuide — полное руководство по уходу за типом изделия
+ *
+ * Используется для халатов и полотенец — у каждого свои рекомендации
+ */
+export interface ProductCareGuide {
+  productType: 'bathrobe' | 'towel'  // Тип изделия
+  title: string                       // Заголовок (например: "Рекомендации по уходу за халатами")
+  subtitle: string                    // Подзаголовок с кратким описанием
+  categories: CareTipCategory[]       // Категории советов
+}
+
+/**
+ * CareImportantNote — важная заметка в конце раздела ухода
+ */
+export interface CareImportantNote {
+  text: string  // Текст заметки
 }
 
 /**
