@@ -52,12 +52,12 @@ const filteredProducts = computed(() => {
         </button>
       </div>
 
-      <!-- Products grid -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Products grid — используем flex с wrap для центрирования при фильтрации -->
+      <div class="flex flex-wrap justify-center gap-6">
         <article
           v-for="product in filteredProducts"
           :key="product.id"
-          class="card group"
+          class="card group w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
         >
           <!-- Image -->
           <div class="aspect-[4/5] bg-cream-50 relative overflow-hidden">
