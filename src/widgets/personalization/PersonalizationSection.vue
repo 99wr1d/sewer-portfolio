@@ -1,5 +1,33 @@
 <script setup lang="ts">
+/**
+ * PersonalizationSection — секция "Персонализация"
+ *
+ * Показывает шаги заказа вышивки и карусель с примерами работ.
+ * Карусель автоматически переключает слайды каждые 5 секунд.
+ */
+
 import { personalizationSteps, contacts } from '~/src/shared/config'
+import { UiCarousel } from '~/src/shared/ui'
+
+// =============================================================================
+// ДАННЫЕ ДЛЯ КАРУСЕЛИ
+// =============================================================================
+
+/**
+ * Массив путей к изображениям работ
+ *
+ * Пока используем пустые строки — карусель покажет placeholder.
+ * Когда добавишь реальные фото в public/images/works/:
+ * 1. Положи фото в папку public/images/works/
+ * 2. Замени пустые строки на пути: '/images/works/work-1.jpg'
+ */
+const workImages = [
+  '', // Замени на '/images/works/work-1.jpg'
+  '', // Замени на '/images/works/work-2.jpg'
+  '', // Замени на '/images/works/work-3.jpg'
+  '', // Замени на '/images/works/work-4.jpg'
+  '', // Замени на '/images/works/work-5.jpg'
+]
 </script>
 
 <template>
@@ -79,32 +107,28 @@ import { personalizationSteps, contacts } from '~/src/shared/config'
           </div>
         </div>
 
-        <!-- Image/Illustration -->
+        <!-- Карусель с примерами работ -->
         <div class="relative">
-          <div class="aspect-square rounded-3xl bg-gradient-to-br from-primary-50 to-cream-100 overflow-hidden">
-            <div class="w-full h-full flex items-center justify-center">
-              <div class="text-center p-8">
-                <!-- Custom embroidery illustration placeholder -->
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-white/50 flex items-center justify-center">
-                  <svg class="w-16 h-16 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                </div>
-                <p class="text-primary-600 font-serif text-xl font-medium mb-2">Любой дизайн</p>
-                <p class="text-primary-500 text-sm max-w-xs mx-auto">
-                  Имена, инициалы, логотипы, рисунки — воплотим любую идею в вышивке
-                </p>
-              </div>
-            </div>
-          </div>
+          <!--
+            UiCarousel — компонент карусели
+            :images — массив путей к изображениям
+            :autoplay="true" — автоматическое переключение слайдов
+            :interval="5000" — интервал 5 секунд
+          -->
+          <UiCarousel
+            :images="workImages"
+            :autoplay="true"
+            :interval="5000"
+            aspect-ratio="square"
+          />
 
-          <!-- Floating examples -->
-          <div class="absolute -top-4 -left-4 bg-white rounded-2xl p-4 shadow-soft-lg">
+          <!-- Плавающие карточки с примерами (декоративные элементы) -->
+          <div class="absolute -top-4 -left-4 bg-white rounded-2xl p-4 shadow-soft-lg z-10">
             <p class="font-serif font-medium text-secondary-900">Имена</p>
             <p class="text-sm text-secondary-500">Анна, Мария</p>
           </div>
 
-          <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-soft-lg">
+          <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-soft-lg z-10">
             <p class="font-serif font-medium text-secondary-900">Рисунки</p>
             <p class="text-sm text-secondary-500">Любимые герои</p>
           </div>
