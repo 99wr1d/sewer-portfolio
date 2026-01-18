@@ -17,6 +17,28 @@ const filteredProducts = computed(() => {
   }
   return products.filter(p => p.category === activeCategory.value)
 })
+
+// Хранит id раскрытой карточки (null = все закрыты)
+// При клике на карточку показываем/скрываем плашку с описанием
+const expandedProductId = ref<string | null>(null)
+
+// Переключает раскрытие карточки
+const toggleProduct = (productId: string) => {
+  if (expandedProductId.value === productId) {
+    // Если карточка уже раскрыта — закрываем
+    expandedProductId.value = null
+  } else {
+    // Иначе раскрываем эту карточку (и закрываем предыдущую)
+    expandedProductId.value = productId
+  }
+}
+
+// Закрывает плашку при клике вне карточки
+// onClickOutside из VueUse — отслеживает клики за пределами элемента
+const catalogRef = ref<HTMLElement | null>(null)
+onClickOutside(catalogRef, () => {
+  expandedProductId.value = null
+})
 </script>
 
 <template>
@@ -53,13 +75,15 @@ const filteredProducts = computed(() => {
       </div>
 
       <!-- Products grid — используем flex с wrap для центрирования при фильтрации -->
-      <div class="flex flex-wrap justify-center gap-6">
+      <!-- ref нужен для onClickOutside — закрытие плашки при клике вне карточек -->
+      <div ref="catalogRef" class="flex flex-wrap justify-center gap-6">
         <article
           v-for="product in filteredProducts"
           :key="product.id"
-          class="card group w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+          class="card group w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] cursor-pointer"
+          @click="toggleProduct(product.id)"
         >
-          <!-- Image -->
+          <!-- Image — относительный контейнер для плашки с описанием -->
           <div class="aspect-[4/5] bg-cream-50 relative overflow-hidden">
             <!-- Placeholder -->
             <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cream-50 to-warm-100">
@@ -71,16 +95,32 @@ const filteredProducts = computed(() => {
               </div>
             </div>
 
-            <!-- Hover overlay -->
-            <div class="absolute inset-0 bg-secondary-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <!-- Плашка с описанием — выезжает снизу при клике -->
+            <div
+              class="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm p-4 transition-transform duration-300 ease-out"
+              :class="expandedProductId === product.id ? 'translate-y-0' : 'translate-y-full'"
+            >
+              <p class="text-sm text-secondary-700 mb-3">
+                {{ product.description }}
+              </p>
+              <!-- Кнопка заказа внутри плашки -->
               <a
                 :href="`https://wa.me/${contacts.whatsapp?.replace(/[^0-9]/g, '')}?text=Здравствуйте! Интересует ${product.name}`"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary text-sm"
+                class="btn-primary text-sm w-full text-center"
+                @click.stop
               >
                 Заказать
               </a>
+            </div>
+
+            <!-- Индикатор "нажми для подробностей" — показываем когда плашка скрыта -->
+            <div
+              v-if="expandedProductId !== product.id"
+              class="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full text-xs text-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              Нажмите для подробностей
             </div>
           </div>
 
@@ -89,9 +129,6 @@ const filteredProducts = computed(() => {
             <h3 class="heading-card mb-2 group-hover:text-primary-600 transition-colors">
               {{ product.name }}
             </h3>
-            <p class="text-sm text-secondary-600 mb-3 line-clamp-2">
-              {{ product.description }}
-            </p>
 
             <!-- Features -->
             <div v-if="product.features" class="flex flex-wrap gap-1.5">
