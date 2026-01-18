@@ -20,7 +20,11 @@ export interface Product {
   id: string                          // Уникальный идентификатор товара
   name: string                        // Название товара
   description: string                 // Описание товара
-  category: 'towel' | 'bathrobe'      // Категория: towel=полотенце, bathrobe=халат
+  // Категории товаров:
+  // towel — полотенце
+  // bathrobe-terry — махровый халат (детский)
+  // bathrobe-waffle — вафельный халат (детский)
+  category: 'towel' | 'bathrobe-terry' | 'bathrobe-waffle'
   image: string                       // Путь к изображению (например: /images/products/towel-1.jpg)
   features?: string[]                 // Особенности товара (необязательное поле, знак ?)
 }

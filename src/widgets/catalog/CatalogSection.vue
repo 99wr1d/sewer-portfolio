@@ -2,11 +2,12 @@
 import { products, contacts } from '~/src/shared/config'
 
 // Категории для фильтрации товаров
-// Халаты только детские, поэтому уточняем в названии
+// Халаты разделены на махровые и вафельные (все детские)
 const categories = [
   { id: 'all', label: 'Все' },
   { id: 'towel', label: 'Полотенца' },
-  { id: 'bathrobe', label: 'Детские халаты' },
+  { id: 'bathrobe-terry', label: 'Махровые халаты' },
+  { id: 'bathrobe-waffle', label: 'Вафельные халаты' },
 ]
 
 const activeCategory = ref('all')
@@ -74,13 +75,13 @@ onClickOutside(catalogRef, () => {
         </button>
       </div>
 
-      <!-- Products grid — используем flex с wrap для центрирования при фильтрации -->
+      <!-- Products grid — сетка 3x3 на десктопе, max-w-4xl ограничивает ширину (уменьшает карточки на ~20%) -->
       <!-- ref нужен для onClickOutside — закрытие плашки при клике вне карточек -->
-      <div ref="catalogRef" class="flex flex-wrap justify-center gap-6">
+      <div ref="catalogRef" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
         <article
           v-for="product in filteredProducts"
           :key="product.id"
-          class="card group w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] cursor-pointer"
+          class="card group cursor-pointer"
           @click="toggleProduct(product.id)"
         >
           <!-- Image — относительный контейнер для плашки с описанием -->
