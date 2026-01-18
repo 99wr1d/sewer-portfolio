@@ -46,7 +46,7 @@ const zoneIcons = {
           </div>
           <div class="flex-1">
             <div class="flex items-center justify-between mb-1">
-              <h3 class="font-serif font-semibold text-secondary-900">
+              <h3 class="heading-card">
                 {{ zone.name }}
               </h3>
               <span class="text-sm font-medium text-primary-600">

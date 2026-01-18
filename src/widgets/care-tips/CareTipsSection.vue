@@ -111,7 +111,7 @@ const careGuides = {
               <div class="w-10 h-10 rounded-xl bg-primary-100 flex items-center justify-center">
                 <UiIcon :name="category.icon" size="sm" class="text-primary-600" />
               </div>
-              <h4 class="font-serif font-semibold text-secondary-900">
+              <h4 class="heading-card">
                 {{ category.title }}
               </h4>
             </div>

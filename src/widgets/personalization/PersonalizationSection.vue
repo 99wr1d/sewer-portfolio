@@ -60,7 +60,7 @@ const workImages = [
                 {{ index + 1 }}
               </div>
               <div>
-                <h3 class="font-serif font-semibold text-secondary-900 mb-1">
+                <h3 class="heading-card mb-1">
                   {{ step.title }}
                 </h3>
                 <p class="text-secondary-600">

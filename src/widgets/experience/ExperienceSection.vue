@@ -37,7 +37,7 @@ import { experienceFeatures } from '~/src/shared/config'
 
           <p class="text-body mb-8">
             Мы помогаем дарить тепло и заботу близким людям.
-            Каждое изделие создаётся с душой — для мам и бабушек, для малышей и их первых достижений,
+            Каждое изделие создаётся с душой — для пап и дедушек, для мам и малышей,
             для семейных праздников и особенных моментов.
           </p>
 
@@ -54,7 +54,7 @@ import { experienceFeatures } from '~/src/shared/config'
                 </svg>
               </div>
               <div>
-                <h3 class="font-serif font-semibold text-secondary-900 mb-1">
+                <h3 class="heading-card mb-1">
                   {{ feature.title }}
                 </h3>
                 <p class="text-sm text-secondary-600">

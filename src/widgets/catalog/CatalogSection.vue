@@ -86,7 +86,7 @@ const filteredProducts = computed(() => {
 
           <!-- Content -->
           <div class="p-5">
-            <h3 class="font-serif text-lg font-medium text-secondary-900 mb-2 group-hover:text-primary-600 transition-colors">
+            <h3 class="heading-card mb-2 group-hover:text-primary-600 transition-colors">
               {{ product.name }}
             </h3>
             <p class="text-sm text-secondary-600 mb-3 line-clamp-2">
